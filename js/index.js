@@ -35,7 +35,7 @@ function searchBook() {
                     priceTd = $("<td></td>").text(result[i].price);
                     titleTd = $("<td></td>").text(result[i].title).attr("id","tTd"+result[i].isbn);
                     authorTd = $("<td></td>").text(result[i].author);
-                    img = $("<img />").attr("src",result[i].img);
+                    img = $("<img />").attr("src",result[i].img).attr("id","bookimg");
                     imgTd = $("<td></td>").append(img);
 
                     dbtn =$("<input>");
@@ -274,6 +274,135 @@ function fileInfo(f){
 
         base64=rst.target.result;
 
-    }
+    };
     reader.readAsDataURL(file[0]); // 파일을 읽는다, 배열이기 때문에 0 으로 접근
+}
+
+function newUser() {
+
+    var ID = $("#form-ID").val();
+    var fname = $("#form-first-name").val();
+    var lname = $("#form-last-name").val();
+    var email = $("#form-email").val();
+    var pw = $("#form-pw").val();
+    var pwD = $("#form-pwD").val();
+
+
+        if(pw==pwD) {
+
+
+            $.ajax({
+                url: "http://localhost:7070/book/userNew",
+                type: "get",
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    ID: ID,
+                    fname: fname,
+                    lname: lname,
+                    email: email,
+                    pw: pw
+
+                },
+                success: function (result) {
+                    alert("회원가입이 완료 되었습니다");
+                    $(location).attr("href", "register.html");
+
+
+                },
+                error: function () {
+                    alert("에러 발생!!")
+                }
+            })
+        }
+            if(pw !== pwD){
+            alert("비밀번호를 확인해주세요!!")
+    }
+}
+
+
+function toLogin() {
+
+
+    $("#con1").load("loginForm.html");
+}
+
+function toRegister() {
+    $("#con1").load("regiForm.html");
+}
+
+function logIn() {
+    $.ajax({
+        url : "http://localhost:7070/book/userLogin",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+        data :{
+            ID : $("#form-ID").val(),
+            pw : $("#form-pw").val()
+        },
+
+
+        success : function(result) {
+            if(result!=="error"){
+                // alert("환영합니다, "+result+"님");
+
+                alert(result+"님 환영합니다.");
+                $(location).attr("href","main.html");
+
+            }
+
+        },
+        error: function () {
+            alert("아이디와 비밀번호를 확인해주세요!");
+        }
+
+
+        })
+}
+function logged() {
+    $.ajax({
+        url : "http://localhost:7070/book/userSession",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Login){
+                // alert("환영합니다, "+result+"님");
+
+                alert("이미 로그인하였습니다.");
+                $(location).attr("href","main.html");
+
+            }
+            if(result.Login==false){
+                $(location).attr("href","register.html");
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+})
+}
+
+function logOut() {
+    $.ajax({
+        url : "http://localhost:7070/book/userLogout",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Logout){
+                alert("로그아웃 되었습니다.");
+                $(location).attr("href","main.html");
+
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+    })
 }
