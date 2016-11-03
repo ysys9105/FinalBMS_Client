@@ -11,7 +11,9 @@ var tr = null;
 var dbtn = null;
 var ubtn = null;
 var abtn = null;
+var cmtbtn = null;
 var base64 = null;
+var commentTd = null;
 
 
 function searchBook() {
@@ -360,7 +362,7 @@ function logIn() {
 
         })
 }
-function logged() {
+function iflogged() {
     $.ajax({
         url : "http://localhost:7070/book/userSession",
         type: "get",
@@ -405,4 +407,60 @@ function logOut() {
             alert("알수없는 에러");
         }
     })
+}
+
+function searchBookforComment() {
+    if(event.keyCode==13){
+        $.ajax({
+            url : "http://localhost:7070/book/bookList",
+            type: "get",
+            dataType : "jsonp",
+            jsonp : "callback",
+            data :{
+                keyword : $("#keyword").val()
+            },
+
+            success : function(result){
+                $("tbody").empty();
+                //결과창출력
+
+                alert($(this).parent().parent().val())
+                for (var i = 0; i < result.length; i++) {
+                    tr = $("<tr></tr>").attr("data-isbn",result[i].isbn);
+
+                    priceTd = $("<td></td>").text(result[i].price);
+                    titleTd = $("<td></td>").text(result[i].title).attr("id","tTd"+result[i].isbn);
+                    authorTd = $("<td></td>").text(result[i].author);
+                    img = $("<img />").attr("src",result[i].img).attr("id","bookimg");
+                    imgTd = $("<td></td>").append(img);
+
+                    cmtbtn =$("<input>");
+                    cmtbtn.attr("type","button");
+                    cmtbtn.attr("class","btn btn-primary");
+                    cmtbtn.attr("value","서평등록");
+                    cmtbtn.on("click", function () {
+                        var isbn = $(this).parent().parent().attr("data-isbn");
+                        localStorage.setItem("isbn",isbn);
+                    });
+
+                    commentTd = $("<td></td>").append(cmtbtn);
+
+                    tr.append(imgTd);
+                    tr.append(titleTd);
+                    tr.append(authorTd);
+                    tr.append(priceTd);
+                    tr.append(commentTd);
+
+                    $("tbody").append(tr);
+                }
+
+            },
+            error: function () {
+                alert("이상이상")
+            }
+        });
+    }
+}
+function commentGo() {
+
 }
