@@ -79,39 +79,65 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <br><br>
-                <li class="active"><a href="index.html">도서검색 <span class="sr-only">(current)</span></a></li>
+                <li class="disactive"><a href="index.html">도서검색 <span class="sr-only">(current)</span></a></li>
 
-                <li class="disactive"><a href="insert.html">도서입력 <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="insert.html">도서입력 <span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
              <span class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..."
-                   id = "keyword" onkeyup="searchBook()">
+
           </span>
-            <h2 class="sub-header">도서 리스트</h2>
+            <h2 class="sub-header">신규도서 입력</h2>
 
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>이미지</th>
+                        <th>ISBN</th>
                         <th>제목</th>
+                        <th>출판일</th>
+                        <th>페이지수</th>
+                        <th>가격</th>
                         <th>저자</th>
-                        <th><a href="#" onclick="mySort()">가격</a></th>
-                        <th>삭제</th>
-                        <th>수정</th>
-                        <th>상세정보</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr id="targetTr">
-
+                    <tr>
+                        <th><input type="text" id="isbni"></th>
+                        <th><input type="text" id="titlei"></th>
+                        <th><input type="text" id="datei"></th>
+                        <th><input type="text" id="pagei"></th>
+                        <th><input type="text" id="pricei"></th>
+                        <th><input type="text" id="authori"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>번역자</th>
+                        <th>부록</th>
+                        <th>출판사</th>
+                        <th>이미지주소</th>
+                        <th>이미지파일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th><input type="text" id="translatori"></th>
+                        <th><input type="text" id="supplementi"></th>
+                        <th><input type="text" id="publisheri"></th>
+                        <th><input type="text" id="imgurli"></th>
+                        <th colspan="2"><input type="file" style="width:400px;" id="imgbase64i" accept="image/*"
+                                               onchange="fileInfo(this)"/></th>
 
                     </tr>
                     </tbody>
                 </table>
+
             </div>
+            <p align="right">
+                <input type="button" value="입력완료" class="btn btn-primary" onclick="insertBook()">
+            </p>
         </div>
     </div>
 </div>

@@ -43,7 +43,7 @@ body {
         padding: 20px;
         overflow-x: hidden;
         overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #f5f5f5;
+        background-color: #0f222f;
         border-right: 1px solid #eee;
     }
 }
@@ -64,7 +64,11 @@ body {
     color: #fff;
     background-color: #18BC9C;
 }
-
+.nav-sidebar > .disactive > a,
+.nav-sidebar > .disactive > a:hover,
+.nav-sidebar > .disactive > a:focus {
+    color: #fff;
+}
 
 /*
  * Main content
@@ -101,4 +105,7 @@ body {
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
+}
+#detail {
+    background-color: #b9d2e7;
 }
