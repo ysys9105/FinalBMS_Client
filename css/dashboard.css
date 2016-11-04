@@ -112,3 +112,10 @@ body {
 #bookimg{
     width: 145px;
 }
+#ctitle{
+    width: 80%;
+}
+#ctext{
+    width: 80%;
+    height: 350px;
+}
