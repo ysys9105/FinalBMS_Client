@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>도서검색 리스트</title>
+    <title>도서관리시스템 :: 새 도서 추가하기 </title>
 
     <!-- jQuery CDN을 먼저 포함 -->
     <script
@@ -47,15 +47,13 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="main.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="main.html">도서 관리 시스템</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
+
                 <li class="page-scroll">
                     <a href="index.html">Search Books</a>
                 </li>
@@ -63,8 +61,9 @@
                     <a href="#about">Lending Books</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="#contact">Book Comments</a>
+                    <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
+                <a onclick="checklogged()" id = "loginout"> .. </a>
             </ul>
 
         </div>
@@ -111,8 +110,8 @@
                         <th><input type="text" id="pricei"></th>
                         <th><input type="text" id="authori"></th>
                     </tr>
-                    </thead>
-                    <tbody>
+                    </tbody>
+                    <thead>
                     <tr>
                         <th>번역자</th>
                         <th>부록</th>

@@ -14,7 +14,7 @@ var abtn = null;
 var cmtbtn = null;
 var base64 = null;
 var commentTd = null;
-
+var userId = null;
 
 function searchBook() {
     if(event.keyCode==13){
@@ -104,7 +104,7 @@ function searchBook() {
                                 var page = result.page;
                                 var translator = result.translator;
                                 var supple = result.supplement;
-                                var detail = "<b>도서정보 :</b><br>"+"ISBN: "+ isbn + "<br>"+"Date: " + date +"<br>"+ "Page: "+ page+"<br>"+"Translator: "+ translator +"<br>"+ "Supplement: "+supple;
+                                var detail = "<b>도서정보 :</b><br>"+"ISBN: "+ isbn + "<br>"+"출판일: " + date +"<br>"+ "페이지 수: "+ page+"<br>"+"번역가: "+ translator +"<br>"+ "부록: "+supple;
 
                                 var d1 = $("<div></div>").attr("id","detail").append(detail);
                                 $("#tTd"+isbn).append(d1);
@@ -334,6 +334,8 @@ function toRegister() {
 }
 
 function logIn() {
+    alert($("#form-ID").val());
+
     $.ajax({
         url : "http://localhost:7070/book/userLogin",
         type: "get",
@@ -346,12 +348,14 @@ function logIn() {
 
 
         success : function(result) {
-            if(result!=="error"){
-                // alert("환영합니다, "+result+"님");
+            if(result.status !="error"){
 
-                alert(result+"님 환영합니다.");
+                alert(result.status+"님 환영합니다.");
                 $(location).attr("href","main.html");
 
+            }
+            if(result.status=="error"){
+                alert("문제가 생겼어요 다시시도해주세요");
             }
 
         },
@@ -371,7 +375,6 @@ function iflogged() {
 
         success : function(result) {
             if(result.Login){
-                // alert("환영합니다, "+result+"님");
 
                 alert("이미 로그인하였습니다.");
                 $(location).attr("href","main.html");
@@ -424,7 +427,6 @@ function searchBookforComment() {
                 $("tbody").empty();
                 //결과창출력
 
-                alert($(this).parent().parent().val())
                 for (var i = 0; i < result.length; i++) {
                     tr = $("<tr></tr>").attr("data-isbn",result[i].isbn);
 
@@ -440,7 +442,7 @@ function searchBookforComment() {
                     cmtbtn.attr("value","서평등록");
                     cmtbtn.on("click", function () {
                         var isbn = $(this).parent().parent().attr("data-isbn");
-                        localStorage.setItem("isbn",isbn);
+                        $(location).attr("href", "commentForm.html?isbn=" + isbn);
                     });
 
                     commentTd = $("<td></td>").append(cmtbtn);
@@ -461,6 +463,235 @@ function searchBookforComment() {
         });
     }
 }
-function commentGo() {
+function insertComment() {
+    var userId =null;
+    $.ajax({
+        url : "http://localhost:7070/book/userSession",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Login){
+                // alert("환영합니다, "+result+"님");
+
+                userId = result.ID;
+                console.log("0 "+userId);
+
+                var isbn = location.href.substr(
+                    location.href.lastIndexOf('=') + 1);
+                console.log("isbn= " +isbn);
+                var title = $("#ctitle").val();
+                var text = $("#ctext").val();
+                $.ajax({
+                    url : "http://localhost:7070/book/insertComment",
+                    type : "get",
+                    dataType : "jsonp",
+                    jsonp : "callback",
+                    data : {
+
+                        bisbn : isbn,
+                        ctitle : title,
+                        cauthor : userId,
+                        ctext : text
+                    },
+                    success : function(result){
+                        alert("변경되었습니다");
+                        // $(location).attr("href","comment.html")
+                        console.log("check2.."+userId);
+
+                    },
+                    error : function () {
+                        alert("업데이트 에러 발생!!")
+                    }
+                })
+
+            }
+            if(result.Login==false){
+                $(location).attr("href","register.html");
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+    });
+
+
 
 }
+
+function checkLog() {
+
+
+    $.ajax({
+        url : "http://localhost:7070/book/userSession",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Login){
+
+                $(location).attr("href","comment.html");
+
+            }
+            if(result.Login==false){
+                alert("회원전용 기능입니다. 로그인부터 하세요!");
+                $(location).attr("href","register.html");
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+    })
+}
+
+function checklogged() {
+    $.ajax({
+        url : "http://localhost:7070/book/userSession",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Login){
+
+            $("#loginout").text("Log-Out").attr("onclick","logOut()");
+
+
+            }
+            if(result.Login==false){
+
+                $("#loginout").text("Log-In").attr("href","register.html");
+
+
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+    })
+}
+
+
+$(function () {
+    checklogged()
+});
+
+var cidTd = null;
+var btitleTd = null;
+var ctitleTd = null;
+var cauthorTd = null;
+var cdateTd = null;
+var ctextTd = null;
+
+function searchComment() {
+    if(event.keyCode==13){
+        $.ajax({
+            url: "http://localhost:7070/book/commentList",
+            type: "get",
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {
+                keyword: $("#keyword").val()
+            },
+
+            success: function (result) {
+                $("tbody").empty();
+                //결과창출력
+
+                for (var i = 0; i < result.length; i++) {
+                    tr = $("<tr></tr>").attr("data-cid", result[i].cid);
+
+                    cidTd = $("<td></td>").text(result[i].cid).attr("id", "tTd" + result[i].cid);
+                    btitleTd = $("<td></td>").text(result[i].btitle);
+
+                    img = $("<img />").attr("src", result[i].img).attr("id", "bookimg");
+                    imgTd = $("<td></td>").append(img);
+
+                    ctitleTd = $("<td></td>").text(result[i].ctitle);
+                    cauthorTd = $("<td></td>").text(result[i].author).attr("id", "idTd"+result[i].cid);
+                    cdateTd = $("<td></td>").text(result[i].date);
+                    ctextTd = $("<td></td>").text(result[i].text);
+
+                    dbtn = $("<input>");
+                    dbtn.attr("type", "button");
+                    dbtn.attr("class", "btn btn-danger");
+                    dbtn.attr("value", "삭제");
+                    var currentCid = "idTd"+result[i].cid;
+
+                    //DELETE 기능!! *********************************
+                    dbtn.on("click", function () {
+
+                        var cid = $(this).parent().parent().attr("data-cid");
+                        var pos = $(this).parent().parent();
+                        console.log("datacid is " + cid);
+                        $.ajax({
+                            url: "http://localhost:7070/book/userSession",
+                            type: "get",
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            success: function (result) {
+                                if (result.ID == $("#"+currentCid).text()) {
+
+                                    userId = result.ID;
+                                    console.log("0 " + userId);
+
+                                    $.ajax({
+                                        url: "http://localhost:7070/book/commentDelete",
+                                        type: "get",
+                                        dataType: "jsonp",
+                                        jsonp: "callback",
+                                        data: {
+                                            cid : cid
+
+                                        },
+                                        success: function () {
+
+                                            pos.remove();
+                                            alert("삭제되었습니다!")
+                                        },
+                                        error: function () {
+                                            alert("삭제 에러 발생!!")
+                                        }
+                                    });
+
+                                }
+                                if (result.ID != $("#"+currentCid).text()) {
+                                    alert("아이디가 다릅니다.");
+                                    console.log("1 " + $("#"+currentCid).text());
+                                    console.log("2 " + result.ID);
+
+                                }
+
+                            },
+
+                            error: function () {
+                                alert("알수없는 에러");
+                            }
+                        });
+                    });
+                        var dbtnTd = $("<td></td>").append(dbtn);
+
+                        tr.append(cidTd);
+                        tr.append(imgTd);
+                        tr.append(btitleTd);
+                        tr.append(ctitleTd);
+                        tr.append(cauthorTd);
+                        tr.append(cdateTd);
+                        tr.append(ctextTd);
+                        tr.append(dbtnTd);
+
+                        $("tbody").append(tr);
+
+
+
+                }
+            }
+        })
+    }
+}
+

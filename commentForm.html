@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>도서관리시스템 :: 서평 등록 </title>
+    <title>도서관리시스템 :: 새 서평 작성 </title>
 
     <!-- jQuery CDN을 먼저 포함 -->
     <script
@@ -61,7 +61,7 @@
                     <a href="#about">Lending Books</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="comment.html">Book Comments</a>
+                    <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
                 <a onclick="checklogged()" id = "loginout"> .. </a>
             </ul>
@@ -80,35 +80,39 @@
                 <br><br>
                 <li class="active"><a href="comment.html">서평 등록 <span class="sr-only">(current)</span></a></li>
 
-                <li class="disactive"><a href="commentIndex.html">서평 검색<span class="sr-only">(current)</span></a></li>
+                <li class="disactive"><a href="commentIndex.html">서평 검색 <span class="sr-only">(current)</span></a></li>
+
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
              <span class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..."
-                   id = "keyword" onkeyup="searchBookforComment()">
+
           </span>
-            <h2 class="sub-header">서평 등록을 위해 도서를 검색해주세요</h2>
+            <h2 class="sub-header">신규도서 입력</h2>
 
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>이미지</th>
+                        <th>ISBN</th>
                         <th>제목</th>
-                        <th>저자</th>
-                        <th>가격</th>
-                        <th>서평등록</th>
+                        <th>내용</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr id="targetTr">
-
-
+                    <tr>
+                        <th><input type="text" id="bisbn"></th>
+                        <th><input type="text" id="ctitle"></th>
+                        <th><input type="text" id="ctext"></th>
                     </tr>
                     </tbody>
+
                 </table>
+
             </div>
+            <p align="right">
+                <input type="button" value="입력완료" class="btn btn-primary" onclick="insertComment()">
+            </p>
         </div>
     </div>
 </div>

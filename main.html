@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>도서관리시스템 :: 환영합니다. </title>
     <!-- jQuery CDN을 먼저 포함 -->
     <script
             src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -24,6 +24,8 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
     <!-- Bootstrap Core CSS -->
@@ -33,7 +35,6 @@
     <link href="css/freelancer.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -58,9 +59,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
+
                 <li class="page-scroll">
                     <a href="index.html">Search Books</a>
                 </li>
@@ -68,10 +67,10 @@
                     <a href=#>Lending Books</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="comment.html">Book Comments</a>
+                    <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
 
-                <span onclick="logOut()"> logout</span>
+                <a onclick="checklogged()" id = "loginout"> .. </a>
             </ul>
 
         </div>
