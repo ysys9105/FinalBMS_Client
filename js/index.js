@@ -334,7 +334,6 @@ function toRegister() {
 }
 
 function logIn() {
-    alert($("#form-ID").val());
 
     $.ajax({
         url : "http://localhost:7070/book/userLogin",
@@ -480,7 +479,6 @@ function insertComment() {
 
                 var isbn = location.href.substr(
                     location.href.lastIndexOf('=') + 1);
-                console.log("isbn= " +isbn);
                 var title = $("#ctitle").val();
                 var text = $("#ctext").val();
                 $.ajax({
@@ -498,7 +496,6 @@ function insertComment() {
                     success : function(result){
                         alert("변경되었습니다");
                         // $(location).attr("href","comment.html")
-                        console.log("check2.."+userId);
 
                     },
                     error : function () {
@@ -705,8 +702,8 @@ function searchComment() {
                         var dbtnTd = $("<td></td>").append(dbtn);
 
                         tr.append(cidTd);
-                        tr.append(imgTd);
                         tr.append(btitleTd);
+                        tr.append(imgTd);
                         tr.append(ctitleTd);
                         tr.append(cauthorTd);
                         tr.append(cdateTd);

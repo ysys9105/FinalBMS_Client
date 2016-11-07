@@ -58,10 +58,10 @@
                     <a href="index.html">Search Books</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="bookLending.html" onclick="checkLog2()">Lending Books</a>
+                    <a href="#" onclick="checkLog2()">Lending Books</a>
                 </li>
                 <li class="page-scroll">
-                    <a href="comment.html" onclick="checkLog()">Book Comments</a>
+                    <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
                 <a onclick="checklogged()" id = "loginout"> .. </a>
             </ul>
@@ -85,10 +85,7 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-             <span class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..."
-                   id = "keyword" onkeyup="searchBookforLending()">
-          </span>
+
             <h2 class="sub-header">내가 빌린 도서</h2>
 
             <div class="table-responsive">
@@ -97,6 +94,7 @@
                     <tr>
                         <th>ISBN</th>
                         <th>도서명</th>
+                        <th>대여일</th>
                         <th>표지</th>
 
                         <th>반납하기</th>

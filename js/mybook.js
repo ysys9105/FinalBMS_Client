@@ -6,6 +6,7 @@ var midTd = null;
 var mtitleTd = null;
 var mimg = null;
 var mimgTd = null;
+var mdateTd=null;
 var rbtn = null;
 var rbtnTd = null;
 
@@ -41,6 +42,7 @@ $(function () {
                     mimgTd = $("<td></td>").append(mimg);
 
                     mtitleTd = $("<td></td>").text(result[i].title);
+                    mdateTd = $("<td></td>").text(result[i].date);
 
                     rbtn = $("<input>");
                     rbtn.attr("type", "button");
@@ -77,6 +79,7 @@ $(function () {
 
                     tr.append(midTd);
                     tr.append(mtitleTd);
+                    tr.append(mdateTd);
                     tr.append(mimgTd);
                     tr.append(rbtnTd);
 
