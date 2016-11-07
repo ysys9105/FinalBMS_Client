@@ -33,6 +33,7 @@
 
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -70,7 +71,9 @@
                     <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
 
-                <a onclick="checklogged()" id = "loginout"> .. </a>
+                <li>
+                    <a onclick="checklogged()" id = "loginout"> .. </a>
+                </li>
             </ul>
 
         </div>
@@ -87,102 +90,32 @@
                 <img class="img-responsive" src="img/profile.png" alt="">
                 <div class="intro-text">
                     <span class="name">Book Management System</span>
-                    <span class="skills">Search - Add - Delete - Update Books!!</span>
+                    <span class="skills">Search - Add - Delete - Update Books!!</span><br>
+                    <span class="skills">Sign Up NOW and look around this library!!</span>
+                    <hr>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Portfolio Grid Section -->
-<!--<section id="portfolio">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-12 text-center">-->
-                <!--<h2>Portfolio</h2>-->
-
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/cabin.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/cake.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/circus.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/game.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/safe.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 portfolio-item">-->
-                <!--<a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">-->
-                    <!--<div class="caption">-->
-                        <!--<div class="caption-content">-->
-                            <!--<i class="fa fa-search-plus fa-3x"></i>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<img src="img/portfolio/submarine.png" class="img-responsive" alt="">-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</section>-->
 
 <!-- About Section -->
-<section class="success" id="about">
-    <div class="container">
+<section class="success" id="aboutsection">
+    <div class="container" id="mainspace">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2>About</h2>
-                <hr class="star-light">
+                <hr>
             </div>
+
         </div>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-2">
-                <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                <p>LaVoon's BMS is a free Book Management System created by LaVoon(YOONSIK KANG). You can look up our books, add new books, delete and update our old books by yourself as well as reviewing them!</p>
             </div>
             <div class="col-lg-4">
-                <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this system is the perfect starting point!</p>
             </div>
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <a class="btn btn-lg btn-outline" onclick="iflogged()">
@@ -193,53 +126,6 @@
     </div>
 </section>
 
-<!-- Footer -->
-<!--<footer class="text-center">-->
-    <!--<div class="footer-above">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="footer-col col-md-4">-->
-                    <!--<h3>Location</h3>-->
-                    <!--<p>3481 Melrose Place-->
-                        <!--<br>Beverly Hills, CA 90210</p>-->
-                <!--</div>-->
-                <!--<div class="footer-col col-md-4">-->
-                    <!--<h3>Around the Web</h3>-->
-                    <!--<ul class="list-inline">-->
-                        <!--<li>-->
-                            <!--<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="footer-col col-md-4">-->
-                    <!--<h3>About Freelancer</h3>-->
-                    <!--<p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="footer-below">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="col-lg-12">-->
-                    <!--Copyright &copy; Your Website 2016-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</footer>-->
 
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">

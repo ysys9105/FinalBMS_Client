@@ -63,8 +63,9 @@
                 <li class="page-scroll">
                     <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
-                <a onclick="checklogged()" id = "loginout"> .. </a>
-            </ul>
+                <li>
+                    <a onclick="checklogged()" id = "loginout"> .. </a>
+                </li>            </ul>
 
         </div>
         <!-- /.navbar-collapse -->
@@ -97,20 +98,23 @@
                         <th>이미지</th>
                         <th>제목</th>
                         <th>저자</th>
-                        <th><a href="#" onclick="mySort()">가격</a></th>
+                        <th>가격</a></th>
                         <th>삭제</th>
                         <th>수정</th>
                         <th>상세정보</th>
                     </tr>
                     </thead>
-                    <tbody class="paging">
+                    <tbody id="myTbody">
                     <tr id="targetTr">
 
 
                     </tr>
                     </tbody>
                 </table>
+
+
             </div>
+            <div id="pagenav"></div>
         </div>
     </div>
 </div>

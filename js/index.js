@@ -31,7 +31,7 @@ function searchBook() {
                 $("tbody").empty();
                 //결과창출력
 
-                $('#paging').paging({current:1, max:50});
+
                 for (var i = 0; i < result.length; i++) {
                     tr = $("<tr></tr>").attr("data-isbn",result[i].isbn);
 
@@ -204,6 +204,39 @@ function searchBook() {
 
                     $("tbody").append(tr);
                 }
+
+
+                $(document).ready(function(){
+
+                    $('#pagenav').empty();
+
+                    $('#data').after('<div id="nav"></div>');
+                    var rowsShown = 10;
+                    var rowsTotal = $('#myTbody tr').length;
+                    var numPages = rowsTotal/rowsShown;
+
+                    for(i = 0;i < numPages;i++) {
+                        var pageNum = i + 1;
+                        $('#pagenav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                    }
+
+                    $('#myTbody tr').hide();
+                    $('#myTbody tr').slice(0, rowsShown).show();
+                    $('#pagenav a:first').addClass('active');
+
+
+                    $('#pagenav a').bind('click', function(){
+
+                        $('#pagenav a').removeClass('active');
+                        $(this).addClass('active');
+                        var currPage = $(this).attr('rel');
+                        var startItem = currPage * rowsShown;
+                        var endItem = startItem + rowsShown;
+                        $('#myTbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                        css('display','table-row').animate({opacity:1}, 300);
+
+                    });
+                });
 
             },
             error: function () {
@@ -456,6 +489,38 @@ function searchBookforComment() {
                     $("tbody").append(tr);
                 }
 
+                $(document).ready(function(){
+
+                    $('#pagenav').empty();
+
+                    $('#data').after('<div id="nav"></div>');
+                    var rowsShown = 10;
+                    var rowsTotal = $('#myTbody tr').length;
+                    var numPages = rowsTotal/rowsShown;
+
+                    for(i = 0;i < numPages;i++) {
+                        var pageNum = i + 1;
+                        $('#pagenav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                    }
+
+                    $('#myTbody tr').hide();
+                    $('#myTbody tr').slice(0, rowsShown).show();
+                    $('#pagenav a:first').addClass('active');
+
+
+                    $('#pagenav a').bind('click', function(){
+
+                        $('#pagenav a').removeClass('active');
+                        $(this).addClass('active');
+                        var currPage = $(this).attr('rel');
+                        var startItem = currPage * rowsShown;
+                        var endItem = startItem + rowsShown;
+                        $('#myTbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                        css('display','table-row').animate({opacity:1}, 300);
+
+                    });
+                });
+
             },
             error: function () {
                 alert("이상이상")
@@ -687,7 +752,9 @@ function searchComment() {
 
                                 }
                                 if (result.ID != uid) {
-                                    alert("아이디가 다릅니다.");
+                                    alert("아이디가 다릅니다. 자신이 등록한 서평만 삭제 가능합니다");
+
+
                                     console.log("1 " + uid);
                                     console.log("2 " + result.ID);
 
@@ -716,6 +783,39 @@ function searchComment() {
 
 
                 }
+
+                $(document).ready(function(){
+
+                    $('#pagenav').empty();
+
+                    $('#data').after('<div id="nav"></div>');
+                    var rowsShown = 10;
+                    var rowsTotal = $('#myTbody tr').length;
+                    var numPages = rowsTotal/rowsShown;
+
+                    for(i = 0;i < numPages;i++) {
+                        var pageNum = i + 1;
+                        $('#pagenav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                    }
+
+                    $('#myTbody tr').hide();
+                    $('#myTbody tr').slice(0, rowsShown).show();
+                    $('#pagenav a:first').addClass('active');
+
+
+                    $('#pagenav a').bind('click', function(){
+
+                        $('#pagenav a').removeClass('active');
+                        $(this).addClass('active');
+                        var currPage = $(this).attr('rel');
+                        var startItem = currPage * rowsShown;
+                        var endItem = startItem + rowsShown;
+                        $('#myTbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                        css('display','table-row').animate({opacity:1}, 300);
+
+                    });
+                });
+
             }
         })
     }
@@ -817,6 +917,39 @@ function searchBookforLending() {
 
 
                 }
+
+                $(document).ready(function(){
+
+                    $('#pagenav').empty();
+
+                    $('#data').after('<div id="nav"></div>');
+                    var rowsShown = 10;
+                    var rowsTotal = $('#myTbody tr').length;
+                    var numPages = rowsTotal/rowsShown;
+
+                    for(i = 0;i < numPages;i++) {
+                        var pageNum = i + 1;
+                        $('#pagenav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                    }
+
+                    $('#myTbody tr').hide();
+                    $('#myTbody tr').slice(0, rowsShown).show();
+                    $('#pagenav a:first').addClass('active');
+
+
+                    $('#pagenav a').bind('click', function(){
+
+                        $('#pagenav a').removeClass('active');
+                        $(this).addClass('active');
+                        var currPage = $(this).attr('rel');
+                        var startItem = currPage * rowsShown;
+                        var endItem = startItem + rowsShown;
+                        $('#myTbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                        css('display','table-row').animate({opacity:1}, 300);
+
+                    });
+                });
+
             }
         })
     }

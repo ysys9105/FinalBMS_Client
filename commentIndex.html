@@ -62,7 +62,9 @@
                 <li class="page-scroll">
                     <a href="#" onclick="checkLog()">Book Comments</a>
                 </li>
-                <a onclick="checklogged()" id = "loginout"> .. </a>
+                <li>
+                    <a onclick="checklogged()" id = "loginout"> .. </a>
+                </li>
             </ul>
 
         </div>
@@ -96,7 +98,7 @@
                     <tr>
                         <th>#</th>
                         <th width="150px">도서명</th>
-                        <th>표지</th>
+                        <th width="145px">표지</th>
                         <th width="200px">제목</th>
                         <th width="70px">작성자</th>
                         <th width="70px">작성일</th>
@@ -105,7 +107,7 @@
 
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTbody">
                     <tr id="targetTr">
 
 
@@ -113,6 +115,8 @@
                     </tbody>
                 </table>
             </div>
+            <div id="pagenav"></div>
+
         </div>
     </div>
 </div>
