@@ -548,6 +548,34 @@ function checkLog() {
     })
 }
 
+function checkLog2() {
+
+
+    $.ajax({
+        url : "http://localhost:7070/book/userSession",
+        type: "get",
+        dataType : "jsonp",
+        jsonp : "callback",
+
+        success : function(result) {
+            if(result.Login){
+
+                $(location).attr("href","bookLending.html");
+
+            }
+            if(result.Login==false){
+                alert("회원전용 기능입니다. 로그인부터 하세요!");
+                $(location).attr("href","register.html");
+            }
+
+        },
+        error: function () {
+            alert("알수없는 에러");
+        }
+    })
+}
+
+
 function checklogged() {
     $.ajax({
         url : "http://localhost:7070/book/userSession",
@@ -686,6 +714,107 @@ function searchComment() {
                         tr.append(dbtnTd);
 
                         $("tbody").append(tr);
+
+
+
+                }
+            }
+        })
+    }
+}
+
+
+
+
+var lidTd = null;
+var ltitleTd = null;
+var limg = null;
+var limgTd = null;
+var lbtn = null;
+var lbtnTd = null;
+
+function searchBookforLending() {
+    if(event.keyCode==13){
+        $.ajax({
+            url: "http://localhost:7070/book/lendableList",
+            type: "get",
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {
+                keyword: $("#keyword").val()
+            },
+
+            success: function (result) {
+                $("tbody").empty();
+                //결과창출력
+
+                for (var i = 0; i < result.length; i++) {
+                    tr = $("<tr></tr>").attr("data-cid", result[i].isbn);
+
+                    lidTd = $("<td></td>").text(result[i].isbn).attr("id", "tTd" + result[i].isbn);
+
+                    limg = $("<img />").attr("src", result[i].img).attr("id", "bookimg");
+                    limgTd = $("<td></td>").append(limg);
+
+                    ltitleTd = $("<td></td>").text(result[i].title);
+
+                    lbtn = $("<input>");
+                    lbtn.attr("type", "button");
+                    lbtn.attr("class", "btn btn-primary");
+                    lbtn.attr("value", "대여하기");
+
+
+                    //대여 기능!! *********************************
+                    lbtn.on("click", function () {
+                        var isbn = $(this).parent().parent().find("td:nth-child(1)").text();
+                        var pos =  $(this).parent().parent();
+
+                        $.ajax({
+                            url : "http://localhost:7070/book/userSession",
+                            type: "get",
+                            dataType : "jsonp",
+                            jsonp : "callback",
+
+                            success : function(result) {
+                                var lid = result.ID;
+
+                                $.ajax({
+                                    url: "http://localhost:7070/book/lend",
+                                    type: "get",
+                                    dataType: "jsonp",
+                                    jsonp: "callback",
+                                    data: {
+                                        isbn : isbn,
+                                        cid : lid
+
+                                    },
+                                    success: function () {
+
+
+                                        pos.remove();
+                                        alert("대여처리 완료!")
+                                    },
+                                    error: function () {
+                                        alert("대여 에러 발생!!")
+                                    }
+                                });
+
+                            },
+                            error: function () {
+                                alert("알수없는 에러");
+                            }
+                        })
+
+
+                    });
+                    lbtnTd = $("<td></td>").append(lbtn);
+
+                    tr.append(lidTd);
+                    tr.append(ltitleTd);
+                    tr.append(limgTd);
+                    tr.append(lbtnTd);
+
+                    $("tbody").append(tr);
 
 
 
