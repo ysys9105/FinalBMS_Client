@@ -31,6 +31,7 @@ function searchBook() {
                 $("tbody").empty();
                 //결과창출력
 
+                $('#paging').paging({current:1, max:50});
                 for (var i = 0; i < result.length; i++) {
                     tr = $("<tr></tr>").attr("data-isbn",result[i].isbn);
 
@@ -494,12 +495,12 @@ function insertComment() {
                         ctext : text
                     },
                     success : function(result){
-                        alert("변경되었습니다");
-                        // $(location).attr("href","comment.html")
+                        alert("서평이 입력되었습니다!");
+                        $(location).attr("href","comment.html")
 
                     },
                     error : function () {
-                        alert("업데이트 에러 발생!!")
+                        alert("서평등록 에러 발생!!")
                     }
                 })
 
@@ -629,7 +630,7 @@ function searchComment() {
                 //결과창출력
 
                 for (var i = 0; i < result.length; i++) {
-                    tr = $("<tr></tr>").attr("data-cid", result[i].cid);
+                    tr = $("<tr></tr>").attr("data-cid", result[i].cid).attr("data-user",result[i].author);
 
                     cidTd = $("<td></td>").text(result[i].cid).attr("id", "tTd" + result[i].cid);
                     btitleTd = $("<td></td>").text(result[i].btitle);
@@ -646,12 +647,12 @@ function searchComment() {
                     dbtn.attr("type", "button");
                     dbtn.attr("class", "btn btn-danger");
                     dbtn.attr("value", "삭제");
-                    var currentCid = "idTd"+result[i].cid;
 
                     //DELETE 기능!! *********************************
                     dbtn.on("click", function () {
 
                         var cid = $(this).parent().parent().attr("data-cid");
+                        var uid = $(this).parent().parent().attr("data-user");
                         var pos = $(this).parent().parent();
                         console.log("datacid is " + cid);
                         $.ajax({
@@ -660,10 +661,10 @@ function searchComment() {
                             dataType: "jsonp",
                             jsonp: "callback",
                             success: function (result) {
-                                if (result.ID == $("#"+currentCid).text()) {
+                                if (result.ID == uid) {
 
                                     userId = result.ID;
-                                    console.log("0 " + userId);
+                                    console.log("0 " + uid);
 
                                     $.ajax({
                                         url: "http://localhost:7070/book/commentDelete",
@@ -685,9 +686,9 @@ function searchComment() {
                                     });
 
                                 }
-                                if (result.ID != $("#"+currentCid).text()) {
+                                if (result.ID != uid) {
                                     alert("아이디가 다릅니다.");
-                                    console.log("1 " + $("#"+currentCid).text());
+                                    console.log("1 " + uid);
                                     console.log("2 " + result.ID);
 
                                 }
